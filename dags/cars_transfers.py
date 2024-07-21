@@ -20,7 +20,7 @@ end = EmptyOperator(task_id='end', dag=dag)
 
 load_from_gcs_to_bq = GCSToBigQueryOperator(
     task_id='load_from_gcs_to_bq',
-    bucket="chicago-taxi-test-de24",
+    bucket=GCS_BUCKET,
     source_objects=[f"{GCS_PREFIX}/*.csv"],
     source_format="CSV",
     destination_project_dataset_table=BIGQUERY_LANDING_TABLE,
