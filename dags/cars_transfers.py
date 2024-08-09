@@ -47,8 +47,8 @@ schema = [
         {"name": "bluetooth", "type": "BOOLEAN", "mode": "NULLABLE"},
         {"name": "usb_port", "type": "BOOLEAN", "mode": "NULLABLE"},
         {"name": "heated_seats", "type": "BOOLEAN", "mode": "NULLABLE"},
-        {"name": "interior_color", "type": "BOOLEAN", "mode": "NULLABLE"},
-        {"name": "exterior_color", "type": "BOOLEAN", "mode": "NULLABLE"},
+        {"name": "interior_color", "type": "STRING", "mode": "NULLABLE"},
+        {"name": "exterior_color", "type": "STRING", "mode": "NULLABLE"},
         {"name": "price", "type": "FLOAT", "mode": "NULLABLE"},
     ]
 
