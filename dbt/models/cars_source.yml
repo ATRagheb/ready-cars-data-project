@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: cars_raw_06
+    database: ready-data-de24  
+  
+    tables:
+      - name: cars
