@@ -6,19 +6,22 @@
     
 }}
 
+
 with cars as (
     select
-        cast(SUBSTR(c.year, 1, STRPOS(c.year, '.') - 1) as int64) as manufacture_year,
-        e.engine_id,
-        transmission.transmission_type_id,
-        drive_train.drive_train_id,
-        fuel_type.fuel_type_id,
-        interior_color.interior_color_id,
-        exterior_color.exterior_color_id,
+        -- cast(SUBSTR(c.year, 1, STRPOS(c.year, '.') - 1) as int64) as manufacture_year,
         c.mileage,
         c.price,
         c.min_mpg,
         c.max_mpg,
+        c.year as manufacture_year,
+        engine as engine_name,
+        transmission as transmission_type,
+        engine_size,
+        fuel_type,
+        drive_train,
+        interior_color,
+        exterior_color,
         case
             when cast(c.damaged as float64) = 0.0 then false
             else true
@@ -104,13 +107,8 @@ with cars as (
             else true
         end as has_heated_seats,
     from {{ source("cars_raw_06", 'cars') }} as c
-    left join {{ ref('engines') }} as e on e.engine_name = c.engine and e.engine_size = c.engine_size
-    left join {{ ref("transmission") }} as transmission on transmission.transmission_type = c.transmission
-    left join {{ ref("drive_train") }} as drive_train on drive_train.drive_train = c.drive_train
-    left join {{ ref("fuel_type") }} as fuel_type on fuel_type.fuel_type = c.fuel_type
-    left join {{ ref("interior_color") }} as interior_color on interior_color.interior_color = c.interior_color
-    left join {{ ref("exterior_color") }} as exterior_color on exterior_color.exterior_color = c.exterior_color
 )
+
 
 
 select
@@ -120,8 +118,8 @@ from cars
 
 
 
-{% if is_incremental() %}
+-- {% if is_incremental() %}
 
-where event_time >= (select coalesce(max(event_time),'1900-01-01') from {{ this }} )
+-- where event_time >= (select coalesce(max(event_time),'1900-01-01') from {{ this }} )
 
-{% endif %}
+-- {% endif %}
