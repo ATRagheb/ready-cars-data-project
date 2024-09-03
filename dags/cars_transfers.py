@@ -8,7 +8,7 @@ GCS_PREFIX = 'cars-com_dataset/'
 BIGQUERY_LANDING_TABLE = 'ready-data-de24.cars_raw_06.cars'
 
 dag = DAG(
-    dag_id='cars_transfers',
+    dag_id='cars_transfers_06',
     start_date=datetime(2021, 1, 1), 
     schedule_interval=None,
 )
