@@ -16,6 +16,7 @@ with cars as (
         c.max_mpg,   
         e.engine_id,
         transmission.transmission_type_id,
+        brand.car_brand_id,
         drive_train.drive_train_id,
         fuel_type.fuel_type_id,
         color.color_id,
@@ -25,6 +26,7 @@ with cars as (
     left join {{ ref("dim_transmission_type") }} as transmission on transmission.transmission_type = c.transmission_type
     left join {{ ref("dim_drive_train") }} as drive_train on drive_train.drive_train = c.drive_train
     left join {{ ref("dim_fuel_type") }} as fuel_type on fuel_type.fuel_type = c.fuel_type
+    left join {{ ref("dim_brand") }} as brand on brand.car_model = c.model and brand.car_brand = c.brand
     left join {{ ref("dim_color") }} as color on color.interior_color = c.interior_color and color.exterior_color = c.exterior_color
     left join {{ ref("car_options") }} as options on (
             options.is_damaged = c.is_damaged

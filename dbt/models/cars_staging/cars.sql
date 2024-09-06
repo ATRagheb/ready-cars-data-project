@@ -16,6 +16,8 @@ with cars as (
         c.max_mpg,
         c.year as manufacture_year,
         engine as engine_name,
+        brand,
+        model,
         transmission as transmission_type,
         engine_size,
         fuel_type,

@@ -9,7 +9,7 @@
 
 
 select
-    brand_id as card_brand_id,
+    brand_id as car_brand_id,
     model as car_model,
     car_brand
 from {{ ref("brand") }}
