@@ -10,10 +10,10 @@
 with cars as (
     select
         cast(SUBSTR(c.manufacture_year, 1, STRPOS(c.manufacture_year, '.') - 1) as int64) as manufacture_year,
-        c.mileage,
-        c.price,
-        c.min_mpg,
-        c.max_mpg,   
+        safe_cast(c.mileage as float64) as mileage,
+        safe_cast(c.price as float64) as price,
+        safe_cast(c.min_mpg as float64) as min_mpg,
+        safe_cast(c.max_mpg as float64) as max_mpg,   
         e.engine_id,
         transmission.transmission_type_id,
         brand.car_brand_id,
